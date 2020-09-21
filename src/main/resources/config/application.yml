@@ -1,0 +1,36 @@
+server:
+  port: 8080
+#  servlet:
+#    context-path: /spt  项目名，访问前缀：http://localhost:8082/spt/hello
+spring:
+  profiles:
+    active: dev
+
+---
+server:
+  port: 8081  #生产环境
+spring:
+  profiles: prod
+
+---
+server:
+  port: 8082   #开发环境
+spring:
+  profiles: dev
+  devtools:
+    restart:
+      enabled: true # 开启热部署
+      additional-paths: src/main/java # 重启目录
+  freemarker:
+    cache: false # 页面不加载缓存
+  messages:
+    basename: i18n/login #国际化
+
+
+#name: "zhangsan \n lisi" 输出 zhangsan 换行 lisi
+#name: 'zhangsan \n lisi' 输出 zhangsan \n lisi
+#pets: [cat,dog,pig] 数组
+#  path: /hello
+logging:
+  file:
+    path:

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--    th:text="" 将div里面的文本内推设置为-->
+<!--    th:id th:class 都可替换原来的 id ，class-->
+<!--    th:each 遍历foreach-->
+<!--    th:if 条件判断-->
+<!--    th:attr 属性修改-->
+<div th:text="${hello}"></div>
+<h1>cwq</h1>
+<!--行内-->
+    <div >
+        [[${users}]]
+    </div>
+<h4 th:text="${user}" th:each="user:${users}"></h4>
+
+<h4>
+    <span  th:each="user:${users}">    [[${user}]]</span>
+</h4>
+</body>
+</html>
