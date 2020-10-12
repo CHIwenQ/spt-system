@@ -25,12 +25,19 @@ spring:
     cache: false # 页面不加载缓存
   messages:
     basename: i18n/login #国际化
-
+  datasource:
+    username: root
+    password: '123'
+    url: jdbc:mysql://localhost:3306/sptdatabase?characterEncoding=UTF-8&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  type-aliases-package: ziyi.sptsystem.entity
+  mapper-locations: classpath:mapper/*.xml
 
 #name: "zhangsan \n lisi" 输出 zhangsan 换行 lisi
 #name: 'zhangsan \n lisi' 输出 zhangsan \n lisi
 #pets: [cat,dog,pig] 数组
 #  path: /hello
 logging:
-  file:
-    path:
+  level.root: info
+

@@ -1,12 +1,17 @@
 package ziyi.sptsystem.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class IndexController {
-    @RequestMapping({"/","/index.html"})
+    @GetMapping("/")
     public String index(){
+        return "redirect:index";
+    }
+    @GetMapping({"/index.html","/index"})
+    public String index2(){
         return "index";
     }
 
