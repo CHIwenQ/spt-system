@@ -297,6 +297,7 @@ public class MainFrame extends JFrame {
     /**
      * 发送数据
      *
+     *
      * @param evt 点击事件
      */
     private void sendData(ActionEvent evt) {
@@ -315,6 +316,8 @@ public class MainFrame extends JFrame {
 
         // 以字符串的形式发送数据
         if (mDataASCIIChoice.isSelected()) {
+
+
             SerialPortManager.sendToPort(mSerialport, ByteUtils.hexToByte(data));
         }
 

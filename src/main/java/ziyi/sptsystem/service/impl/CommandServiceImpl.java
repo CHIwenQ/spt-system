@@ -33,7 +33,14 @@ public class CommandServiceImpl implements CommandService {
         byte[] bytes = ByteUtils.hexToByte(cmd);
 //        SerialServiceImpl.openPort();// 打开串口
         SerialPort serialPort = serialService.getmSerialport();
-        SerialPortManager.sendToPort(serialPort,bytes); //发送命令
+        try {
+            SerialPortManager.sendToPort(serialPort,bytes); //发送命令
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("命令发送异常");
+            System.out.println("*********************************");
+            return null;
+        }
 //        System.out.println("命令3：数据已发送");
         Map<String, Object> res=null;
         try {
@@ -51,6 +58,7 @@ public class CommandServiceImpl implements CommandService {
                 return res;
             }catch (Exception e2){
                 System.out.println("二次未读到");
+                System.out.println("****************************");
             }
         }
         finally {

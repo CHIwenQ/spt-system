@@ -278,7 +278,11 @@
     var tmpData=0.5;
     var saveBool=false;
     function changeSaveBool() {
-        saveBool = !saveBool;
+        if(switchStatus=="openSuccess"){
+            saveBool = !saveBool;
+        }else {
+            toastr.error('请先打开串口！')
+        }
     }
     function saveData(y,x) {
         var val={"ad_value":y,"date":x};

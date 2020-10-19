@@ -105,19 +105,20 @@ public class SerialPortManager {
 		OutputStream out = null;
 		try {
 			out = serialPort.getOutputStream();
-
 			out.write(order);
 			out.flush();
 		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
+			System.out.println("串口未连接有效设备");
+		} catch (Exception e){
+			System.out.println("串口未连接有效设备");
+		}finally {
 			try {
 				if (out != null) {
 					out.close();
 					out = null;
 				}
 			} catch (IOException e) {
-				e.printStackTrace();
+				System.out.println("串口未连接有效设备");
 			}
 		}
 	}

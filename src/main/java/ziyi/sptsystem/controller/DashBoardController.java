@@ -35,8 +35,10 @@ public class DashBoardController {
     @ResponseBody
     public String updateData(){
         JSONObject result = new JSONObject();
-        deviceDataService.getAllData();
-        float adValue = deviceDataService.getAdValue();
+        float adValue = 0;
+        if (deviceDataService.getAllData()!=null){
+            adValue = deviceDataService.getAdValue();
+        }
         result.put("data",adValue);
         return result.toJSONString();
     }
