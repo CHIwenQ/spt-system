@@ -12,8 +12,8 @@ public class DeviceDataServiceImpl  implements DeviceDataService {
      @Autowired
      CommandServiceImpl commandService;
     @Override
-    public Map<String, Object> getAllData() {
-        resMap=commandService.sendCmd3();
+    public Map<String, Object> getAllData(int id) {
+        resMap=commandService.sendCmd3(id);
 //        for (String str:resMap.keySet()){
 //            System.out.println(str+":"+resMap.get(str));
 //        }

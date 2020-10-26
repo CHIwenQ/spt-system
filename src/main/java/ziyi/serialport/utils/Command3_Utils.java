@@ -1,5 +1,6 @@
 package ziyi.serialport.utils;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,10 +10,6 @@ import java.util.Map;
  */
 public class Command3_Utils {
 
-    public static String sendCommand3(){
-        String cmd = "FF FF FF FF 82 38 6f ff fe 10 3 0 c7";
-        return cmd;
-    }
     public static Map<String,Object> explainData(String data){
         int index=0;
         while(index!=data.length()-1){
@@ -44,11 +41,9 @@ public class Command3_Utils {
         index+=2;
         res.put("AD值",Float.intBitsToFloat(new BigInteger(data2.substring(index,index+8), 16).intValue()));
         index+=8;
-//        for (String str:res.keySet()){
-//            System.out.println(str+":"+res.get(str));
-//        }
-
-
+        for (String str:res.keySet()){
+            System.out.println(str+":"+res.get(str));
+        }
         return res;
     }
 

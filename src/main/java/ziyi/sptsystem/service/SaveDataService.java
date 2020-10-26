@@ -7,7 +7,7 @@ import java.util.List;
 
 
 public interface SaveDataService {
-    public boolean saveAdValue(TmpData tmpData);//保存AD值
+    public boolean saveAdValue(TmpData tmpData,int id);//保存AD值
 
     List<TmpData> findAllData();
 

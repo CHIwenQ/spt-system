@@ -5,9 +5,19 @@
 <mapper namespace="ziyi.sptsystem.mapper.TmpDataMapper">
 
     <select id="queryTmpDataList" resultType="ziyi.sptsystem.entity.TmpData">
-        select * from spt1;
+        select * from spt0;
     </select>
-    <insert id="addTmpData" parameterType="TmpData">
+    <insert id="addTmpData0" parameterType="TmpData">
+        insert into spt0(ad_value,date) values (#{ad_value},now());
+    </insert>
+
+    <insert id="addTmpData1" parameterType="TmpData">
         insert into spt1(ad_value,date) values (#{ad_value},now());
     </insert>
+
+    <insert id="addTmpData2" parameterType="TmpData">
+        insert into spt2(ad_value,date) values (#{ad_value},now());
+    </insert>
+
+
 </mapper>

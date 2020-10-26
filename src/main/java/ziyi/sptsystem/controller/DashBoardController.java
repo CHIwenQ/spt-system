@@ -17,6 +17,7 @@ import java.util.Map;
 
 @Controller
 public class DashBoardController {
+    static int id;
     @Autowired
      private SerialServiceImpl serialPort;
     @Autowired
@@ -26,20 +27,26 @@ public class DashBoardController {
     public  static boolean switchBool = true;
     @RequestMapping("/dashboard")
     public String getDashBoard(Map<String,Object> map){
-        map.put("sptid","spt-1");
-
+        map.put("sptid",id);
+        return "dashboard";
+    }
+    @RequestMapping("/dashboard/getId")
+    public String getId(Map<String,Object> map){
+        map.put("sptid",id);
         return "dashboard";
     }
 
     @RequestMapping(method = RequestMethod.POST,value = "/dashboard/getData",produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public String updateData(){
+    public String updateData(@RequestBody TmpData data){
         JSONObject result = new JSONObject();
+        id = data.getId();
         float adValue = 0;
-        if (deviceDataService.getAllData()!=null){
+        if (deviceDataService.getAllData(id)!=null){
             adValue = deviceDataService.getAdValue();
         }
         result.put("data",adValue);
+        result.put("id",id);
         return result.toJSONString();
     }
 
@@ -47,7 +54,8 @@ public class DashBoardController {
     @ResponseBody
     public String saveData(@RequestBody TmpData data){
         TmpData tmpData = new TmpData(data.getAd_value(),data.getDate());
-        saveDataService.saveAdValue(tmpData);
+        int id = data.getId();
+        saveDataService.saveAdValue(tmpData,id);
         return "true";
     }
 

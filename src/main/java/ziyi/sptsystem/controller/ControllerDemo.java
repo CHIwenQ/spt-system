@@ -43,7 +43,7 @@ public class ControllerDemo {
     public String batis(){
         TmpData tmpData = new TmpData();
         tmpData.setAd_value(2323);
-        saveDataService.saveAdValue(tmpData);
+//        saveDataService.saveAdValue(tmpData);
         return "chartDemo2";
     }
 

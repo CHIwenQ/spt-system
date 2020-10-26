@@ -106,6 +106,7 @@ public class SerialPortManager {
 		try {
 			out = serialPort.getOutputStream();
 			out.write(order);
+			Thread.sleep(100);
 			out.flush();
 		} catch (IOException e) {
 			System.out.println("串口未连接有效设备");
@@ -113,12 +114,15 @@ public class SerialPortManager {
 			System.out.println("串口未连接有效设备");
 		}finally {
 			try {
+				Thread.sleep(100);
 				if (out != null) {
 					out.close();
 					out = null;
 				}
 			} catch (IOException e) {
 				System.out.println("串口未连接有效设备");
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
 		}
 	}
@@ -142,7 +146,7 @@ public class SerialPortManager {
 			int bytesNum = in.read(readBuffer);
 			while (bytesNum > 0) {
 				try {
-					Thread.sleep(200);
+					Thread.sleep(100);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

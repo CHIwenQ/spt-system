@@ -5,7 +5,7 @@ import java.util.Map;
 public interface DeviceDataService {
 
 
-    public Map<String, Object> getAllData();//获取所有数据
+    public Map<String, Object> getAllData(int id);//获取所有数据
 
     public double getCurrent();//获取电流值
 

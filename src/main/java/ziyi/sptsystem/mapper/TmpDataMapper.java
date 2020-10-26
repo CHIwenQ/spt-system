@@ -12,7 +12,11 @@ public interface TmpDataMapper {
 
     List<TmpData> queryTmpDataList();
 
-    int addTmpData(TmpData tmpData);
+    int addTmpData0(TmpData tmpData);
+
+    int addTmpData1(TmpData tmpData);
+
+    int addTmpData2(TmpData tmpData);
 
 
 }

@@ -14,10 +14,18 @@ public class SaveDataServiceImpl implements SaveDataService {
     TmpDataMapper tmpDataMapper;
 
     @Override
-    public boolean saveAdValue(TmpData tmpData) {
+    public boolean saveAdValue(TmpData tmpData,int id) {
         try {
-            tmpDataMapper.addTmpData(tmpData);
-            return true;
+            if (id==0){
+                tmpDataMapper.addTmpData0(tmpData);
+                return true;
+            }else if (id==1){
+                tmpDataMapper.addTmpData1(tmpData);
+                return true;
+            }else if (id==2){
+                tmpDataMapper.addTmpData2(tmpData);
+                return true;
+            }
         }catch (Exception e){
             e.printStackTrace();
         }

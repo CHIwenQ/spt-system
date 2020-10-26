@@ -228,14 +228,14 @@
 </script>
 <script type="text/javascript">
 	toastr.options = {
-		closeButton: false,
+		closeButton: true,
 		debug: false,
 		progressBar: false,
 		positionClass: "toast-top-center",
 		onclick: null,
 		showDuration: "300",
 		hideDuration: "1000",
-		timeOut: "2000",
+		timeOut: "30000",
 		extendedTimeOut: "1000",
 		showEasing: "swing",
 		hideEasing: "linear",
@@ -263,7 +263,7 @@
                 }else if (switchStatus == "openError"){
 					toastr.error('串口未找到，或串口已被占用！')
 				}else if (switchStatus == "closeSuccess"){
-					toastr.info('串口已关闭！')
+					toastr.success('串口已关闭！')
 				}else if (switchStatus == "closeError"){
 					toastr.error("串口关闭异常！");
 				}
@@ -275,7 +275,20 @@
     }
 </script>
 <script>
-    var tmpData=0.5;
+    arr=[0,1,2];
+    i=0;
+    var id = arr[i];
+    toastr.info("正在监视："+id);
+    setInterval(function () {
+        if (i == 3) {
+            i = 0;
+        }
+        id = arr[i++];
+        toastr.info("正在监视："+id);
+    }, 60000);
+    </script>
+<script>
+    var tmpData = 0.5;
     var saveBool=false;
     function changeSaveBool() {
         if(switchStatus=="openSuccess"){
@@ -285,7 +298,7 @@
         }
     }
     function saveData(y,x) {
-        var val={"ad_value":y,"date":x};
+        var val={"ad_value":y,"date":x,"id":id};
         console.log(JSON.stringify(val))
         $.ajax({
             type: "POST",
@@ -302,13 +315,15 @@
     }
 
     function get_data() {
+        var val={"id":id};
         $.ajax({
             type: "POST",
             url: "/dashboard/getData",
+            data: JSON.stringify(val),
             dataType: "json",
             contentType: "application/json",
             success: function (data) {
-                if (Math.abs(data.data)>100000){
+                if (Math.abs(data.data)>100000 && Math.abs(data.data)<18000000 && data.data>-100000){
                     tmpData = data.data;
                 }
                 return tmpData;
@@ -339,26 +354,35 @@
                         chart = this;
                     activeLastPointToolip(chart);
                     setInterval(function () {
+                            console.log(id)
                             x = (new Date()).getTime(), // 当前时间
                             y=0.5;
                         if (switchStatus == "openSuccess") {
-                            get_data();
+                            get_data(id);
                             y = tmpData;
                             if (saveBool) {
                                 saveData(y,x);
-                                var color = '#1aef0b'
                             } else {
-                                var color = '#f5074c'
+                                var color = '#0e0d0d'
                             }
                         }
+                            if (id==0){
+                                var color = '#ef260b'
+                            }else if (id==1){
+                                var color = '#f1df67'
+                            }else if (id==2){
+                                var color = '#2496fa'
+                            }
                             series.addPoint({x:x, y:y, marker:{fillColor:color}}, true, true);
                             activeLastPointToolip(chart);
-                        }, 2000);
+                        }, 1000);
                 }
+
             }
         },
         title: {
             text: '动态实时数据'
+
         },
         xAxis: {
             type: 'datetime',
@@ -380,7 +404,7 @@
             enabled: false
         },
         series: [{
-            name: '随机数据',
+            name: '实时数据',
             data: (function () {
                 var data = [],
                     time = (new Date()).getTime(),
