@@ -19,6 +19,7 @@ public class SerialServiceImpl implements SerialService {
 
     private static boolean findPort() { //寻找串口
         mCommList = SerialPortManager.findPorts();
+
         // 检查是否有可用串口，有则加入选项中
         try {
             Thread.sleep(300);
@@ -33,6 +34,7 @@ public class SerialServiceImpl implements SerialService {
             for (String s : mCommList) {
                 mSerialName += s;
             }
+            System.out.println(mSerialName);
             return true;
         }
     }
@@ -45,7 +47,7 @@ public class SerialServiceImpl implements SerialService {
     public static boolean openPort() { //打开串口
         if (findPort() == true && mSerialport == null) {
             // 获取串口名称
-            String commName = mSerialName;
+            String commName = "COM3";
             // 获取波特率，默认为1200
             int baudrate = 1200;
             // 检查串口名称是否获取正确

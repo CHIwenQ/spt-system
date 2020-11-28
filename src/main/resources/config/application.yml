@@ -30,6 +30,7 @@ spring:
     password: '123'
     url: jdbc:mysql://localhost:3306/sptdatabase?characterEncoding=UTF-8&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
+
 mybatis:
   type-aliases-package: ziyi.sptsystem.entity
   mapper-locations: classpath:mapper/*.xml

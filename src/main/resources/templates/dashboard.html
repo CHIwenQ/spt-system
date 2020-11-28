@@ -275,17 +275,17 @@
     }
 </script>
 <script>
-    arr=[0,1,2];
+    arr=[0];
     i=0;
     var id = arr[i];
     toastr.info("正在监视："+id);
-    setInterval(function () {
-        if (i == 3) {
-            i = 0;
-        }
-        id = arr[i++];
-        toastr.info("正在监视："+id);
-    }, 60000);
+    // setInterval(function () {
+    //     if (i == 3) {
+    //         i = 0;
+    //     }
+    //     id = arr[i++];
+    //     toastr.info("正在监视："+id);
+    // }, 60000);
     </script>
 <script>
     var tmpData = 0.5;
